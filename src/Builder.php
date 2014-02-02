@@ -119,14 +119,16 @@ class Builder
 
     private function loadFeed($url)
     {
-        $data = @file_get_contents($url);
-        if ($data === false) {
-            $error = error_get_last();
-            $error = trim($error['message']);
-            throw new \Exception("Failed loading feed: $error");
+        for($retries = 3; $retries > 0; $retries -= 1) {
+            $data = @file_get_contents($url);
+            if ($data !== false) {
+                return $data;
+            }
         }
 
-        return $data;
+        $error = error_get_last();
+        $error = trim($error['message']);
+        throw new \Exception("Failed loading feed: $error");
     }
 
     private function parseFeed($data)
