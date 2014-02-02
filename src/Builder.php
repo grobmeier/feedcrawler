@@ -13,15 +13,27 @@ class Builder
 {
     use LoggingTrait;
 
-    public function __construct(array $feeds, $target)
+    /** Configuration options. */
+    private $config;
+
+    /** Path to the folder where feeds are generated. */
+    private $target;
+
+    public function __construct(array $config, $target)
     {
-        $this->feeds = $feeds;
+        $this->config = $config;
         $this->target = rtrim($target, DIRECTORY_SEPARATOR);
+
+        if (isset($this->config['timeout'])) {
+            $timeout = $this->config['timeout'];
+            $this->log()->info("Setting socket timeout to $timeout seconds");
+            ini_set('default_socket_timeout', $timeout);
+        }
     }
 
     public function build()
     {
-        foreach($this->feeds as $feed) {
+        foreach($this->config['feeds'] as $feed) {
             $url = $feed['url'];
             $name = $feed['name'];
             $categories = isset($feed['categories']) ? $feed['categories'] : null;

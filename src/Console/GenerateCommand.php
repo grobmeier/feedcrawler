@@ -37,9 +37,7 @@ class GenerateCommand extends Command
         $config = $this->loadConfig($input, $output);
         $target = $this->getTarget($input, $output);
 
-        $feeds = $config['feeds'];
-
-        $builder = new Builder($feeds, $target, $output);
+        $builder = new Builder($config, $target, $output);
         $builder->build();
     }
 
