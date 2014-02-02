@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
 class GenerateCommand extends Command
@@ -69,11 +70,9 @@ class GenerateCommand extends Command
             $target = getcwd();
         }
 
-        if (!is_dir($target)) {
-            $output->writeln("<info>Creating target directory [$target]</info>");
-            if (!mkdir($target)) {
-                throw new \Exception("Failed creating traget directory [$target]");
-            }
+        $fs = new Filesystem();
+        if (!$fs->exists($target)) {
+            $fs->mkdir($target);
         }
 
         $target = realpath($target);
