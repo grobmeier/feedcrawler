@@ -33,16 +33,16 @@ class Builder
 
     public function build()
     {
-        foreach($this->config['feeds'] as $feed) {
-            $url = $feed['url'];
-            $name = $feed['name'];
-            $categories = isset($feed['categories']) ? $feed['categories'] : null;
+        foreach($this->config['feeds'] as $config) {
+            $url = $config['url'];
+            $name = isset($config['name']) ? $config['name'] : null;
+            $categories = isset($config['categories']) ? $config['categories'] : null;
 
-            $this->processFeed($name, $url, $categories);
+            $this->processFeed($url, $name, $categories);
         }
     }
 
-    public function processFeed($name, $url, $categories)
+    public function processFeed($url, $name, $categories)
     {
         try {
             $this->log()->info("Loading feed $name from: $url");
@@ -50,6 +50,11 @@ class Builder
 
             $this->log()->info("Parsing feed.");
             $feed = $this->parseFeed($data);
+
+            // Override name if specified
+            if (!empty($name)) {
+                $feed->name = $name;
+            }
 
             $count = count($feed->items);
             $this->log()->info("Loaded $count items. Creating posts.");
@@ -80,13 +85,20 @@ class Builder
 
     private function buildPage(Feed $feed, Item $item)
     {
-        $meta = Yaml::dump([
+        $meta = [
             'title' => $item->title,
             'layout' => 'post',
-            'tags' => $item->categories,
-            'category' => $feed->slug,
             'published' => $item->time->format('c'),
-        ]);
+            'feed' => $feed->title,
+            'link' => $item->link,
+            'author' => (array) $item->author
+        ];
+
+        if (!empty($item->categories)) {
+            $meta['tags'] = $item->categories;
+        }
+
+        $meta = Yaml::dump($meta);
 
         if (!empty($item->content)) {
             $content = $item->content;
