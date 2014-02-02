@@ -1,6 +1,9 @@
 # Timeout when loading feeds (seconds)
 timeout: 10
 
+# Feed definitions
+# url - the URL to the feed
+# name - feed name (optional, if not given will be taken from the feed)
 feeds:
     - url: http://news.dartlang.org/feeds/posts/default
       name: Dartlang News
