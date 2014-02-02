@@ -23,10 +23,11 @@ class RssParser extends Parser
         }
 
         $feed = new Feed();
-        $feed->description = (string) $xml->description;
-        $feed->language = (string) $xml->language;
-        $feed->lastBuildDate = (string) $xml->lastBuildDate;
-        $feed->title = (string) $xml->title;
+        $feed->description = (string) $xml->channel->description;
+        $feed->language = (string) $xml->channel->language;
+        $feed->lastBuildDate = (string) $xml->channel->lastBuildDate;
+        $feed->title = (string) $xml->channel->title;
+        $feed->slug = $this->getSlug($xml->channel->title);
 
         $items = [];
         foreach($xml->channel->item as $entry) {
