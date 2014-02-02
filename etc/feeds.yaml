@@ -2,8 +2,10 @@
 timeout: 10
 
 # Feed definitions
-# url - the URL to the feed
-# name - feed name (optional, if not given will be taken from the feed)
+# - url (string) - The URL to the feed.
+# - name (string) - Feed name (optional, if not given will be taken from the feed)
+# - categories (array) - An array of categories. Optional. If set, only items
+#       from the given categories will be included.
 feeds:
     - url: http://news.dartlang.org/feeds/posts/default
       name: Dartlang News
