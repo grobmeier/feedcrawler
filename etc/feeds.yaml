@@ -8,11 +8,9 @@ feeds:
     - url: http://feeds.feedburner.com/Dartwatch
       name: Dartwatch
 
-    - url: http://japhr.blogspot.com/feeds/posts/default/-/dart
+    - url: http://japhr.blogspot.com/feeds/posts/default
       name: Chris Strom
-
-    - url: http://japhr.blogspot.com/feeds/posts/default/-/dartlang
-      name: Chris Strom (new tag)
+      categories: ['dart', 'dartlang']
 
     - url: http://turbomanage.wordpress.com/category/dart/feed/
       name: David Chandler

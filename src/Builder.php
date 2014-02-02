@@ -24,14 +24,16 @@ class Builder
         foreach($this->feeds as $feed) {
             $url = $feed['url'];
             $name = $feed['name'];
-            $this->processFeed($name, $url);
+            $categories = isset($feed['categories']) ? $feed['categories'] : null;
+
+            $this->processFeed($name, $url, $categories);
         }
     }
 
-    public function processFeed($name, $url)
+    public function processFeed($name, $url, $categories)
     {
         try {
-            $this->log()->info("Loading feed: $url");
+            $this->log()->info("Loading feed $name from: $url");
             $data = $this->loadFeed($url);
 
             $this->log()->info("Parsing feed.");
@@ -41,11 +43,27 @@ class Builder
             $this->log()->info("Loaded $count items. Creating posts.");
 
             foreach($feed->items as $item) {
-                $this->buildPage($feed, $item);
+                if ($this->inCategory($item, $categories)) {
+                    $this->log()->debug("Adding item \"$item->slug\"");
+                    $this->buildPage($feed, $item);
+                } else {
+                    $this->log()->debug("Skipping item \"$item->slug\" (not in requested categories)");
+                }
             }
         } catch (\Exception $ex) {
             $this->log()->error($ex->getMessage());
         }
+    }
+
+    private function inCategory(Item $item, $categories)
+    {
+        // If no categories are configured process the item
+        if (!isset($categories)) {
+            return true;
+        }
+
+        $intersect = array_intersect($item->categories, $categories);
+        return !empty($intersect);
     }
 
     private function buildPage(Feed $feed, Item $item)
@@ -74,7 +92,6 @@ class Builder
 
         $target = $this->getTarget($feed, $item);
 
-        $this->log()->info("Rendering: $target");
         $success = file_put_contents($target, $post);
         if ($success === false) {
             $this->log()->error("Failed saving post.");
