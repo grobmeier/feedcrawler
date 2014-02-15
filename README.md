@@ -10,5 +10,5 @@ composer install
 
 Run generator:
 ```
-php bin/crawler --config etc/feeds.yaml --target /path/to/feed-content
+php bin/crawler generate --config etc/feeds.yaml --target /path/to/feed-content
 ```
