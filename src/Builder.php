@@ -138,13 +138,12 @@ class Builder
         $slug = $item->slug;
         $filename = "$date-$slug.html";
 
-        $dir = $this->target . DIRECTORY_SEPARATOR . "_posts";
         $fs = new Filesystem();
-        if (!$fs->exists($dir)) {
-            $fs->mkdir($dir);
+        if (!$fs->exists($this->target)) {
+            $fs->mkdir($this->target);
         }
 
-        return $dir . DIRECTORY_SEPARATOR . $filename;
+        return $this->target . DIRECTORY_SEPARATOR . $filename;
     }
 
     private function loadFeed($url)
