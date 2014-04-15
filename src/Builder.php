@@ -60,12 +60,18 @@ class Builder
             $this->log()->info("Loaded $count items. Creating posts.");
 
             foreach($feed->items as $item) {
-                if ($this->inCategory($item, $categories)) {
-                    $this->log()->debug("Adding item \"$item->slug\"");
-                    $this->buildPage($feed, $item);
-                } else {
-                    $this->log()->debug("Skipping item \"$item->slug\" (not in requested categories)");
+                if (empty($item->title)) {
+                    $this->log()->debug("Skipping item (no title)");
+                    continue;
                 }
+
+                if (!$this->inCategory($item, $categories)) {
+                    $this->log()->debug("Skipping item \"$item->slug\" (not in requested category)");
+                    continue;
+                }
+
+                $this->log()->debug("Adding item \"$item->slug\"");
+                $this->buildPage($feed, $item);
             }
         } catch (\Exception $ex) {
             $this->log()->error($ex->getMessage());
