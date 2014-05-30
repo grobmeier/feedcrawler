@@ -19,10 +19,16 @@ class Builder
     /** Path to the folder where feeds are generated. */
     private $target;
 
-    public function __construct(array $config, $target)
+    /** Wether or not the feedcrawler should try to perform a git commit */
+    private $useGit;
+
+    public function __construct(array $config, $target, $useGit = false)
     {
         $this->config = $config;
+
         $this->target = rtrim($target, DIRECTORY_SEPARATOR);
+
+        $this->useGit = $useGit;
 
         if (isset($this->config['timeout'])) {
             $timeout = $this->config['timeout'];
@@ -73,9 +79,34 @@ class Builder
                 $this->log()->debug("Adding item \"$item->slug\"");
                 $this->buildPage($feed, $item);
             }
+
+            if ($this->useGit) {
+                $this->performGit();
+            }
         } catch (\Exception $ex) {
             $this->log()->error($ex->getMessage());
         }
+    }
+
+    private function performGit()
+    {
+        $shell_output = array();
+        $status = null;
+
+        chdir($this->target);
+        
+        $perform = function($command) {
+            $output = exec($command,$shell_output,$status);
+            $this->log()->debug("Executing: $command");
+            $this->log()->debug($shell_output);
+            $this->log()->debug('Exec Status: ' . $status);            
+        };
+
+        $perform('pwd');
+        $perform('git pull');
+        $perform('git add .');
+        $perform('git commit -m \'Planet update\'');
+        $perform('git push');
     }
 
     private function inCategory(Item $item, $categories)

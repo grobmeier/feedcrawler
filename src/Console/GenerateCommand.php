@@ -28,7 +28,12 @@ class GenerateCommand extends Command
                'target', 't', InputOption::VALUE_REQUIRED,
                'Target folder where the files will be generated. ' .
                'If not given, defaults to the current working directory.',
-               'var'
+               'target'
+            )
+            ->addOption(
+               'use-git', 'g', InputOption::VALUE_NONE,
+               'Tries to perform git pull, git commit, git push in target directory ' .
+               'Defaults to false.'
             );
     }
 
@@ -36,8 +41,9 @@ class GenerateCommand extends Command
     {
         $config = $this->loadConfig($input, $output);
         $target = $this->getTarget($input, $output);
+        $useGit = ($input->getOption('use-git') == true);
 
-        $builder = new Builder($config, $target, $output);
+        $builder = new Builder($config, $target, $output, $useGit);
         $builder->build();
     }
 
