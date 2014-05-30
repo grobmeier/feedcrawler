@@ -1,0 +1,103 @@
+# Timeout when loading feeds (seconds)
+timeout: 10
+
+# Feed definitions
+# - url (string) - The URL to the feed.
+# - name (string) - Feed name (optional, if not given will be taken from the feed)
+# - categories (array) - An array of categories. Optional. If set, only items
+#       from the given categories will be included.
+feeds:
+    - url: http://news.dartlang.org/feeds/posts/default
+      name: Dartlang News
+
+    - url: http://feeds.feedburner.com/SethLaddsBlog
+      name: Seth Ladd
+
+    - url: http://feeds.feedburner.com/Dartwatch
+      name: Dartwatch
+
+    - url: http://japhr.blogspot.com/feeds/posts/default
+      name: Chris Strom
+      categories: ['dart', 'dartlang']
+
+    - url: http://turbomanage.wordpress.com/category/dart/feed/
+      name: David Chandler
+
+    - url: http://dartvader.grobmeier.de/feed
+      name: Dart Vader (German)
+
+    - url: http://blog.lassus.se/dart.xml
+      name: Olov Lassus
+
+    - url: http://phylotic.blogspot.com/feeds/posts/default/-/dartlang
+      name: John Evans
+
+    - url: http://financecoding.wordpress.com/category/dart/feed/
+      name: Adam Coding
+
+    - url: http://financecoding.github.com/atom.xml
+      name: Adam Coding @ Github
+
+    - url: http://tdd-dart.blogspot.com/feeds/posts/default
+      name: Test Driven Dart Development
+
+    - url: http://dartery.blogspot.com/feeds/posts/default
+      name: Dartery
+
+    - url: http://blog.butlermatt.me/?cat=4&feed=rss2
+      name: Matt Butler
+
+    - url: http://work.j832.com/feeds/posts/default
+      name: Kevin Moore
+
+    - url: http://dartcasts.com/rss
+      name: Dartcasts.com
+
+    - url: http://jjinux.blogspot.com/feeds/posts/default/-/dartlang
+      name: Shannon -jj Behrens
+
+    - url: http://shailen.github.com/dart.xml
+      name: Shailen Tuli
+
+    - url: http://futureperfect.info/atom.xml
+      name: Future Perfect
+
+    - url: http://divingintodart.blogspot.com/feeds/posts/default
+      name: Diving into Dart
+
+    - url: http://www.salatti.net/category/programming/dart/feed/
+      name: Daniele Salatti
+
+    - url: http://blog.angulardart.org/feeds/posts/default
+      name: Angulardart
+
+
+    ### NONEXISTANT:
+
+    # - url: http://www.dartexperience.com/es/feed/
+    #   name: Dart Experience (ES)
+
+    # - url: http://www.dartexperience.com/en/feed/
+    #   name: Dart Experience
+
+    # - url: http://journal.stuffwithstuff.com/category/dart/feed/index.xml
+    #   name: Robert Nystrom
+
+    # - url: http://www.grobmeier.de/category/dart/feed
+    #   name: Christian Grobmeier
+
+    # - url: http://ladicek.github.com/atom.xml
+    #   name: Dart: Terra Incognita (Ladislav Thon)
+
+    # - url: http://blog.dartflash.com/feeds/posts/default
+    #   name: Dartflash
+
+
+    ### FAILS PARSING XML:
+
+    # - url: http://www.greatandlittle.com/studios/index.php?feed/category/Google/Dart/atom
+    #   name: Richard Griffith
+
+    # - url: http://dzenanr.github.com/ondart.rss
+    #   name: On Dart (Dzenan Ridjanovic)
+
