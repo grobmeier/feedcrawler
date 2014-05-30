@@ -46,6 +46,10 @@ class Builder
 
             $this->processFeed($url, $name, $categories);
         }
+
+        if ($this->useGit) {
+            $this->performGit();
+        }
     }
 
     public function processFeed($url, $name, $categories)
@@ -78,10 +82,6 @@ class Builder
 
                 $this->log()->debug("Adding item \"$item->slug\"");
                 $this->buildPage($feed, $item);
-            }
-
-            if ($this->useGit) {
-                $this->performGit();
             }
         } catch (\Exception $ex) {
             $this->log()->error($ex->getMessage());
