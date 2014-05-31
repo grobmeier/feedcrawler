@@ -41,9 +41,9 @@ class GenerateCommand extends Command
     {
         $config = $this->loadConfig($input, $output);
         $target = $this->getTarget($input, $output);
-        $useGit = ($input->getOption('use-git') == true);
+        $useGit = ($input->getOption('use-git') == 1) ? 1 : 0;
 
-        $builder = new Builder($config, $target, $output, $useGit);
+        $builder = new Builder($config, $target, $useGit);
         $builder->build();
     }
 

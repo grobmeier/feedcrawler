@@ -47,7 +47,7 @@ class Builder
             $this->processFeed($url, $name, $categories);
         }
 
-        if ($this->useGit) {
+        if ($this->useGit == 1) {
             $this->performGit();
         }
     }
