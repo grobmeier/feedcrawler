@@ -71,20 +71,14 @@ feeds:
     - url: http://blog.angulardart.org/feeds/posts/default
       name: Angulardart
 
+    -url: http://grobmeier.de/dart-feed.xml
+     name: Christian Grobmeier
 
     ### NONEXISTANT:
 
-    # - url: http://www.dartexperience.com/es/feed/
-    #   name: Dart Experience (ES)
-
-    # - url: http://www.dartexperience.com/en/feed/
-    #   name: Dart Experience
-
+ 
     # - url: http://journal.stuffwithstuff.com/category/dart/feed/index.xml
     #   name: Robert Nystrom
-
-    # - url: http://www.grobmeier.de/category/dart/feed
-    #   name: Christian Grobmeier
 
     # - url: http://ladicek.github.com/atom.xml
     #   name: Dart: Terra Incognita (Ladislav Thon)
