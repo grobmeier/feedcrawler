@@ -71,8 +71,8 @@ feeds:
     - url: http://blog.angulardart.org/feeds/posts/default
       name: Angulardart
 
-    -url: http://grobmeier.de/dart-feed.xml
-     name: Christian Grobmeier
+    - url: http://grobmeier.de/dart-feed.xml
+      name: Christian Grobmeier
 
     ### NONEXISTANT:
 
