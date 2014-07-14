@@ -74,6 +74,9 @@ feeds:
     - url: http://grobmeier.de/dart-feed.xml
       name: Christian Grobmeier
 
+    - url: http://redstonedart.org/feed.xml
+      name: Redstone Dart
+
     ### NONEXISTANT:
 
  
