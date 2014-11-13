@@ -44,6 +44,10 @@ class AtomParser extends Parser
             $item->time = $this->parseTime($entry);
             $item->title = (string) $entry->title;
 
+            if (isset($entry->id)) {
+                $item->id = (string) $entry->id;
+            }
+
             $feed->items[] = $item;
         }
 

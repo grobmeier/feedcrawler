@@ -43,6 +43,10 @@ class RssParser extends Parser
             $item->time = new DateTime($entry->pubDate);
             $item->title = (string) $entry->title;
 
+            if (isset($entry->id)) {
+                $item->id = (string) $entry->id;
+            }
+
             $feed->items[] = $item;
         }
 
@@ -51,6 +55,8 @@ class RssParser extends Parser
 
     /**
      * Extracts the Author from a given entry.
+     * @param SimpleXMLElement $entry
+     * @return Author
      */
     private function parseAuthor(SimpleXMLElement $entry)
     {
