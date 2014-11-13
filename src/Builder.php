@@ -42,9 +42,10 @@ class Builder
         foreach($this->config['feeds'] as $config) {
             $url = $config['url'];
             $name = isset($config['name']) ? $config['name'] : null;
+            $builder = isset($config['builder']) ? $config['builder'] : 'Dartosphere\FeedCrawler\StandardPageBuilder';
             $categories = isset($config['categories']) ? $config['categories'] : null;
 
-            $this->processFeed($url, $name, $categories);
+            $this->processFeed($url, $name, $categories, $builder);
         }
 
         if ($this->useGit == 1) {
@@ -52,7 +53,7 @@ class Builder
         }
     }
 
-    public function processFeed($url, $name, $categories)
+    public function processFeed($url, $name, $categories, $builder)
     {
         try {
             $this->log()->info("Loading feed $name from: $url");
@@ -81,7 +82,10 @@ class Builder
                 }
 
                 $this->log()->debug("Adding item \"$item->slug\"");
-                $this->buildPage($feed, $item);
+
+                /** @var PageBuilder $pageBuilder */
+                $pageBuilder = new $builder();
+                $pageBuilder->build($feed, $item, $this->target);
             }
         } catch (\Exception $ex) {
             $this->log()->error($ex->getMessage());
@@ -118,63 +122,6 @@ class Builder
 
         $intersect = array_intersect($item->categories, $categories);
         return !empty($intersect);
-    }
-
-    private function buildPage(Feed $feed, Item $item)
-    {
-        $meta = [
-            'title' => $item->title,
-            'layout' => 'post',
-            'published' => $item->time->format('c'),
-            'feed' => $feed->title,
-            'link' => $item->link,
-            'author' => (array) $item->author
-        ];
-
-        if (!empty($item->categories)) {
-            $meta['tags'] = $item->categories;
-        }
-
-        $meta = Yaml::dump($meta);
-
-        if (!empty($item->content)) {
-            $content = $item->content;
-        } elseif (!empty($item->description)) {
-            $content = $item->description;
-        } else {
-            $this->log()->warn("No content found for item [$item->title] in feed [$feed->title]. Skipping.");
-        }
-
-        // Construct the page
-        $post  = "---\n";
-        $post .= "$meta\n";
-        $post .= "---\n\n";
-        $post .= "$content\n";
-
-        $target = $this->getTarget($feed, $item);
-
-        $success = file_put_contents($target, $post);
-        if ($success === false) {
-            $this->log()->error("Failed saving post.");
-        }
-    }
-
-    /**
-     * Determines the target file for given item.
-     * Creates the target folder if it doesn't exist.
-     */
-    private function getTarget(Feed $feed, Item $item)
-    {
-        $date = $item->time->format('Y-m-d');
-        $slug = $item->slug;
-        $filename = "$date-$slug.html";
-
-        $fs = new Filesystem();
-        if (!$fs->exists($this->target)) {
-            $fs->mkdir($this->target);
-        }
-
-        return $this->target . DIRECTORY_SEPARATOR . $filename;
     }
 
     private function loadFeed($url)
