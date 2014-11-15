@@ -57,11 +57,18 @@ class AtomParser extends Parser
     private function parseAuthor(SimpleXMLElement $entry, $default = null)
     {
         if (isset($entry->author)) {
-            $author = new Author();
-            $author->name = (string) $entry->author->name;
-            $author->email = (string) $entry->author->email;
-            $author->url = (string) $entry->author->uri;
-            return $author;
+            $authors = [];
+            foreach ($entry->author as $entryAuthor) {
+                $author = new Author();
+                $author->name = (string) $entryAuthor->name;
+                $author->email = (string) $entryAuthor->email;
+                $author->url = (string) $entryAuthor->uri;
+                $authors[] = $author;
+            }
+            if (sizeOf($authors) == 1) {
+                return current($authors);
+            }
+            return $authors;
         }
 
         return $default;

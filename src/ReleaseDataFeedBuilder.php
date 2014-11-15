@@ -12,6 +12,15 @@ class ReleaseDataFeedBuilder implements PageBuilder
 
     public function build(Feed $feed, Item $item, $targetDir)
     {
+        $authors = [];
+        if (is_array($item->author)) {
+            foreach ($item->author as $author) {
+                $authors[] = $author->name;
+            }
+        } else {
+            $authors[] = $item->author->name;
+        }
+
         $exploded = explode(' of ', $item->title);
         $release = [
             'package_name' => $exploded[1],
@@ -20,7 +29,7 @@ class ReleaseDataFeedBuilder implements PageBuilder
             'published' => $item->time->format('c'),
             'id' => $item->id,
             'link' => $item->link,
-            'author' => $item->author->name
+            'author' => $authors
         ];
 
         $target = $this->getTarget($targetDir);
@@ -29,7 +38,7 @@ class ReleaseDataFeedBuilder implements PageBuilder
             return;
         }
 
-        $release = Yaml::dump([$release]);
+        $release = Yaml::dump([$release], 3);
 
         $success = file_put_contents($target, $release, FILE_APPEND); //
         if ($success === false) {
