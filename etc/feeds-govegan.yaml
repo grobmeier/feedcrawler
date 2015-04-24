@@ -7,12 +7,6 @@ timeout: 10
 # - categories (array) - An array of categories. Optional. If set, only items
 #       from the given categories will be included.
 feeds:
-    - url: https://blog.angularjs.org/feeds/posts/default
-      name: AngularJS Blog
-    - url: http://blog.angulardart.org/feeds/posts/default
-      name: AngularDart Blog
-
-
     - url: http://feeds.feedburner.com/MinimalistBaker
       name: Minimalist Baker
     - url: http://feeds.feedburner.com/carrieonvegan
