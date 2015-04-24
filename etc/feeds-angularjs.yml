@@ -1,0 +1,15 @@
+# Timeout when loading feeds (seconds)
+timeout: 10
+
+# Feed definitions
+# - url (string) - The URL to the feed.
+# - name (string) - Feed name (optional, if not given will be taken from the feed)
+# - categories (array) - An array of categories. Optional. If set, only items
+#       from the given categories will be included.
+feeds:
+    - url: https://blog.angularjs.org/feeds/posts/default
+      name: AngularJS Blog
+    - url: http://blog.angulardart.org/feeds/posts/default
+      name: AngularDart Blog
+
+
