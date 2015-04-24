@@ -1,0 +1,55 @@
+# Timeout when loading feeds (seconds)
+timeout: 10
+
+# Feed definitions
+# - url (string) - The URL to the feed.
+# - name (string) - Feed name (optional, if not given will be taken from the feed)
+# - categories (array) - An array of categories. Optional. If set, only items
+#       from the given categories will be included.
+feeds:
+    - url: https://blog.angularjs.org/feeds/posts/default
+      name: AngularJS Blog
+    - url: http://blog.angulardart.org/feeds/posts/default
+      name: AngularDart Blog
+
+
+    - url: http://feeds.feedburner.com/MinimalistBaker
+      name: Minimalist Baker
+    - url: http://feeds.feedburner.com/carrieonvegan
+      name: Carrie On Living
+    - url: http://feeds.feedburner.com/ThisRawsomeVeganLife
+      name: This Rawsome Vegan Life
+    - url: http://veganyackattack.com/feed/
+      name: Vegan Yack Attack
+    - url: http://ohmyveggies.com/feed
+      name: Oh My Veggies
+    - url: http://feeds.feedburner.com/havecakewilltravel/SGde
+      name: Have Cake, Will Travel
+    - url: http://feeds.feedburner.com/thesimpleveganista
+      name: The Simple Veganista
+    - url: http://feeds.feedburner.com/blogspot/INCwI
+      name: Poor and Gluten Free
+    - url: http://www.thesensitivepantry.com/the-sensitive-pantry/rss.xml
+      name: The Sensitive Pantry
+    - url: http://feeds.feedburner.com/blogspot/qvgfa
+      name: Vegetarian Gastronomy
+    - url: http://feeds.feedburner.com/CookieAndKate
+      name: Cookie & Kate
+    - url: http://glutenfreevegan.blogspot.com/feeds/posts/default
+      name: Gluten Free Vegan
+    - url: http://api.viglink.com/api/click?format=go&jsonp=vglnk_14266900203786&key=1ee706d1e7075fd10f14c74b3f010fde&libId=i7euaz990100025y000DAdhyq0th7&loc=http%3A%2F%2Fhappyherbivore.com%2F2013%2F08%2Fhealthy-organic-natural-buzzword-trap-read-labels%2F&v=1&out=http%3A%2F%2Ffeeds.feedburner.com%2FHappyHerbivore-Blog&ref=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D67%26cad%3Drja%26uact%3D8%26ved%3D0CEkQFjAGODw%26url%3Dhttp%253A%252F%252Fhappyherbivore.com%252F2013%252F08%252Fhealthy-organic-natural-buzzword-trap-read-labels%252F%26ei%3DL48JVd--OZPWgwT1oYGwBA%26usg%3DAFQjCNEzVLXODvXMikdPn6MYWunS1CIIyQ%26bvm%3Dbv.88198703%2Cd.aWw&title=Healthy!%20Organic!%20Natural!%20Vegan!%20Gluten-Free!%20Light!%20Don%27t%20Get%20Caught%20in%20the%20Buzzword%20Trap%20and%20How%20to%20Read%20Labels%20%7C%20Happy%20Herbivore&txt=Or%20go%20grab%20our%20RSS%20feed!%20%20%26gt%3B
+      name: Happy Herbivore
+    - url: http://feeds.feedburner.com/wordpress/EAKn
+      name: Adventures of a Gluten Free Mom
+    - url: http://feeds.feedburner.com/JennifersWay
+      name: Jennifer's Way
+    - url: http://www.godairyfree.org/feed
+      name: Go Dairy Free
+    - url: http://www.glutenfreefix.com/feed
+      name: Gluten Free Fix
+    - url: https://glutenfreesoyfreevegan.wordpress.com/feed/
+      name: Gluten Free Soy Free Vegan
+    - url: http://feeds.feedburner.com/blogspot/Jmdl
+      name: Holy Cow Vegan
+    - url: http://feeds2.feedburner.com/kitchenstewardship/Pgbo
+      name: Kitchen Stewardship
