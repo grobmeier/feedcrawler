@@ -80,6 +80,9 @@ feeds:
     - url: http://embeddeddart.blogspot.com/feeds/posts/default
       name: Embedded Dart
 
+    - url: http://yakovfain.com/category/dart/feed/
+      name: Yakov Fain
+      
     ### NONEXISTANT:
 
  
