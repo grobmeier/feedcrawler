@@ -82,10 +82,13 @@ feeds:
 
     - url: http://yakovfain.com/category/dart/feed/
       name: Yakov Fain
-      
+
+    - url: http://astashov.github.io/dart.xml
+      name: Anton Astashov
+
     ### NONEXISTANT:
 
- 
+
     # - url: http://journal.stuffwithstuff.com/category/dart/feed/index.xml
     #   name: Robert Nystrom
 
@@ -103,4 +106,3 @@ feeds:
 
     # - url: http://dzenanr.github.com/ondart.rss
     #   name: On Dart (Dzenan Ridjanovic)
-
