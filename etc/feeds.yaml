@@ -59,9 +59,6 @@ feeds:
     - url: http://shailen.github.com/dart.xml
       name: Shailen Tuli
 
-    - url: http://futureperfect.info/atom.xml
-      name: Future Perfect
-
     - url: http://divingintodart.blogspot.com/feeds/posts/default
       name: Diving into Dart
 
