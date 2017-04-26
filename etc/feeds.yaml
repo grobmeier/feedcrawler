@@ -62,9 +62,6 @@ feeds:
     - url: http://divingintodart.blogspot.com/feeds/posts/default
       name: Diving into Dart
 
-    - url: http://www.salatti.net/category/programming/dart/feed/
-      name: Daniele Salatti
-
     - url: http://blog.angulardart.org/feeds/posts/default
       name: Angulardart
 
