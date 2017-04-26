@@ -76,6 +76,9 @@ feeds:
 
     - url: http://astashov.github.io/dart.xml
       name: Anton Astashov
+      
+    - url: https://medium.com/feed/@matanlurey
+      name: Matan Lurey
 
     ### NONEXISTANT:
 
