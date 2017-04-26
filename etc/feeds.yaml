@@ -62,9 +62,6 @@ feeds:
     - url: http://divingintodart.blogspot.com/feeds/posts/default
       name: Diving into Dart
 
-    - url: http://blog.angulardart.org/feeds/posts/default
-      name: Angulardart
-
     - url: http://grobmeier.de/dart-feed.xml
       name: Christian Grobmeier
 
